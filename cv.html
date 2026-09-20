@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taha Tahiri Alaoui — Computer Science</title>
+<meta name="description" content="Computer science student at UM6P. Full-stack and Web3 development, C/C++, Linux. Mathematics and physics tutor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Work+Sans:wght@350;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E9E0CD;
+    --paper-2:#DFD3BA;
+    --ink:#221C21;
+    --ink-2:#5C5055;
+    --wine:#75203F;
+    --wine-2:#9C2C53;
+    --rule:rgba(34,28,33,.16);
+
+    --display:"Fraunces",Georgia,"Times New Roman",serif;
+    --text:"Work Sans","Helvetica Neue",Arial,sans-serif;
+
+    --s0:1.0625rem;
+    --s1:1.25rem;
+    --s2:1.6rem;
+    --s3:2.25rem;
+    --sm:.9375rem;
+    --xs:.84rem;
+
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#1A1517;
+      --paper-2:#231C20;
+      --ink:#E9E0CD;
+      --ink-2:#A2938C;
+      --wine:#E3789A;
+      --wine-2:#F293B0;
+      --rule:rgba(233,224,205,.15);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#1A1517;
+    --paper-2:#231C20;
+    --ink:#E9E0CD;
+    --ink-2:#A2938C;
+    --wine:#E3789A;
+    --wine-2:#F293B0;
+    --rule:rgba(233,224,205,.15);
+  }
+
+  *,*::before,*::after{box-sizing:inherit}
+
+  html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--text);
+    font-size:var(--s0);
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:66rem;
+    margin:0 auto;
+    padding:clamp(2rem,6vw,5rem) clamp(1.25rem,5vw,4rem) 4rem;
+  }
+
+  a{color:var(--wine);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--wine) 35%,transparent);transition:color .15s,border-color .15s}
+  a:hover{color:var(--wine-2);border-bottom-color:var(--wine-2)}
+  a:focus-visible{outline:2px solid var(--wine-2);outline-offset:3px;border-radius:2px}
+
+  /* ---- hero ---- */
+  .hero{padding-bottom:clamp(2rem,5vw,3.25rem)}
+
+  .hero-grid{display:grid;gap:clamp(1.75rem,4vw,3rem);align-items:start}
+  @media (min-width:56rem){
+    .hero-grid{grid-template-columns:minmax(0,1fr) 15rem}
+  }
+  .hero-text{min-width:0}
+
+  .portrait{margin:0;max-width:15rem}
+  @media (max-width:55.99rem){
+    .portrait{max-width:10.5rem;order:-1}
+  }
+  .portrait-img,.portrait-empty{
+    display:block;
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    object-position:center 30%;
+    border-radius:2px;
+  }
+  .portrait-empty{
+    background:var(--paper-2);
+    border:1px solid var(--rule);
+    color:var(--wine);
+    font-family:var(--display);
+    font-weight:500;
+    font-size:2.6rem;
+    letter-spacing:.02em;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .name{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(3rem,11vw,6.25rem);
+    line-height:.86;
+    letter-spacing:-.025em;
+    margin:0;
+    font-variation-settings:"SOFT" 0,"WONK" 1;
+  }
+  .name span{display:block}
+  .name .last{color:var(--wine)}
+
+  .stroke{
+    height:.55rem;
+    background:var(--wine);
+    margin:clamp(1.25rem,3vw,2rem) 0 clamp(1.25rem,3vw,1.75rem);
+    transform-origin:left center;
+  }
+
+  .positioning{
+    font-family:var(--display);
+    font-weight:300;
+    font-size:clamp(1.2rem,2.7vw,1.7rem);
+    line-height:1.4;
+    max-width:34ch;
+    margin:0 0 clamp(1.5rem,4vw,2.25rem);
+  }
+
+  .contact{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.4rem 1.6rem;
+    font-size:var(--sm);
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+  .contact li{display:flex;gap:.5rem;align-items:baseline}
+  .contact b{
+    font-weight:500;
+    color:var(--ink-2);
+    font-size:var(--xs);
+    letter-spacing:.01em;
+  }
+
+  /* ---- the one loud fact ---- */
+  .fact{
+    background:var(--wine);
+    color:var(--paper);
+    margin:clamp(2rem,5vw,3rem) 0 0;
+    padding:clamp(1.4rem,3.5vw,2rem) clamp(1.4rem,4vw,2.25rem);
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.35rem,3.6vw,2.1rem);
+    line-height:1.25;
+    letter-spacing:-.01em;
+  }
+  .fact small{
+    display:block;
+    font-family:var(--text);
+    font-weight:400;
+    font-size:var(--sm);
+    letter-spacing:0;
+    margin-top:.6rem;
+    opacity:.82;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]) .fact{color:#1A1517}
+  }
+  :root[data-theme="dark"] .fact{color:#1A1517}
+
+  /* ---- sections: hanging labels ---- */
+  .block{
+    border-top:1px solid var(--rule);
+    padding:clamp(2rem,4.5vw,2.75rem) 0;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:1rem;
+  }
+  @media (min-width:56rem){
+    .block{grid-template-columns:9.5rem minmax(0,1fr);gap:2.5rem}
+  }
+
+  .label{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:var(--s1);
+    line-height:1.1;
+    color:var(--wine);
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  @media (min-width:56rem){
+    .label{position:sticky;top:2rem;align-self:start;text-align:right}
+  }
+
+  .body{max-width:68ch;min-width:0}
+
+  .item + .item{margin-top:2rem}
+
+  .item h3{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:var(--s2);
+    line-height:1.2;
+    letter-spacing:-.015em;
+    margin:0 0 .15rem;
+  }
+  .meta{
+    color:var(--ink-2);
+    font-size:var(--sm);
+    margin:0 0 .85rem;
+  }
+
+  .body p{margin:0 0 .85rem}
+  .body p:last-child{margin-bottom:0}
+
+  ul.plain{margin:0;padding:0;list-style:none}
+  ul.plain li{
+    position:relative;
+    padding-left:1.15rem;
+    margin-bottom:.45rem;
+  }
+  ul.plain li::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:.72em;
+    width:.42rem;
+    height:1px;
+    background:var(--wine);
+  }
+  ul.plain li:last-child{margin-bottom:0}
+  ul.plain li b{font-weight:600}
+
+  /* ---- skill groups ---- */
+  .groups{display:grid;gap:1.35rem}
+  @media (min-width:34rem){.groups{grid-template-columns:1fr 1fr;gap:1.35rem 2rem}}
+  .group h4{
+    font-family:var(--text);
+    font-size:var(--xs);
+    font-weight:600;
+    color:var(--ink-2);
+    margin:0 0 .3rem;
+    letter-spacing:.01em;
+  }
+  .group p{margin:0;line-height:1.5}
+
+  /* ---- coursework chips, but not chips ---- */
+  .course{
+    columns:2;
+    column-gap:2rem;
+    margin:0;
+    padding:0;
+    list-style:none;
+    font-size:var(--sm);
+  }
+  @media (max-width:34rem){.course{columns:1}}
+  .course li{
+    break-inside:avoid;
+    padding:.18rem 0;
+    color:var(--ink-2);
+  }
+
+  /* ---- footer ---- */
+  .foot{
+    border-top:.4rem solid var(--wine);
+    margin-top:clamp(2rem,5vw,3rem);
+    padding-top:clamp(1.75rem,4vw,2.25rem);
+    display:grid;
+    gap:2rem;
+  }
+  @media (min-width:48rem){.foot{grid-template-columns:1fr 1fr}}
+  .foot h4{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:var(--s1);
+    color:var(--wine);
+    margin:0 0 .6rem;
+  }
+  .foot p, .foot ul{font-size:var(--sm)}
+  .foot ul{margin:0;padding:0;list-style:none}
+  .foot li{margin-bottom:.3rem}
+  .foot .lang b{font-weight:500}
+  .foot .lang span{color:var(--ink-2)}
+
+  .updated{
+    margin-top:2.5rem;
+    font-size:var(--xs);
+    color:var(--ink-2);
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem 1.25rem;
+    align-items:center;
+  }
+  .toggle{
+    font:inherit;
+    font-size:var(--xs);
+    color:var(--ink-2);
+    background:none;
+    border:1px solid var(--rule);
+    border-radius:999px;
+    padding:.3rem .75rem;
+    cursor:pointer;
+  }
+  .toggle:hover{color:var(--wine);border-color:var(--wine)}
+  .toggle:focus-visible{outline:2px solid var(--wine-2);outline-offset:2px}
+
+  /* ---- load moment: one reveal, on the rule only ---- */
+  @media (prefers-reduced-motion:no-preference){
+    .stroke{animation:draw .85s cubic-bezier(.2,.7,.2,1) .15s both}
+    @keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  }
+
+  @media print{
+    :root{--paper:#fff;--paper-2:#fff;--ink:#000;--ink-2:#444;--wine:#6b1c38;--rule:#ccc;padding:0}
+    body{font-size:10.5pt;line-height:1.42}
+    .wrap{max-width:none;padding:0}
+    .name{font-size:36pt}
+    .hero-grid{grid-template-columns:1fr 1.5in;gap:.6in;align-items:start}
+    .portrait{max-width:1.5in}
+    .portrait-empty{display:none}
+    .portrait-img{border:.5pt solid #999}
+    .stroke{height:3pt;margin:.5rem 0 .7rem;animation:none}
+    .positioning{font-size:12pt;max-width:none;margin-bottom:.6rem}
+    .fact{background:none;color:#000;border-left:3pt solid var(--wine);padding:.3rem 0 .3rem .6rem;font-size:13pt;margin:.8rem 0 0}
+    .fact small{opacity:1;color:#444}
+    .block{padding:.7rem 0;grid-template-columns:7rem 1fr;gap:1.2rem;break-inside:avoid}
+    .label{position:static;text-align:right;font-size:12pt}
+    .item h3{font-size:12pt}
+    .item + .item{margin-top:.8rem}
+    .toggle,.updated{display:none}
+    a{color:#000;border:none}
+    .foot{border-top-width:2pt}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1 class="name"><span>Taha Tahiri</span><span class="last">Alaoui</span></h1>
+        <div class="stroke" role="presentation"></div>
+        <p class="positioning">Computer science student at UM6P. I write graphics engines from scratch, build full-stack and AI tools, teach mathematics, and draw.</p>
+        <ul class="contact">
+          <li><b>Email</b> <a href="mailto:Taha.ALAOUI@um6p.ma">Taha.ALAOUI@um6p.ma</a></li>
+          <li><b>GitHub</b> <a href="https://github.com/YOUR-HANDLE">github.com/YOUR-HANDLE</a></li>
+          <li><b>Phone</b> <a href="tel:+212773338003">+212 773 338 003</a></li>
+          <li><b>Based in</b> Rabat–Salé, Morocco</li>
+        </ul>
+      </div>
+      <figure class="portrait">
+        <img class="portrait-img" src="photo.jpg" alt="Taha Tahiri Alaoui">
+      </figure>
+    </div>
+
+    <p class="fact">Top 10 of roughly 500 entrants in a mathematics competition.<small>Top of class throughout secondary school.</small></p>
+  </header>
+
+  <section class="block">
+    <h2 class="label">Engines</h2>
+    <div class="body">
+      <div class="item">
+        <h3>Three engines, written from scratch</h3>
+        <p class="meta">Personal projects · C and C++</p>
+        <p>I build engines because it is the quickest way to find out what a framework was hiding. Each of these started from an empty file rather than a template.</p>
+        <ul class="plain">
+          <li><b>3D engine</b> — rendering pipeline, transforms and camera, scene and entity organisation, the linear algebra underneath all of it.</li>
+          <li><b>Voxel engine</b> — chunked world representation, mesh generation, face culling, and the memory discipline that makes a large world tractable.</li>
+          <li><b>2D game engine</b> — game loop, sprite rendering, input handling, and collision.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="label">Also built</h2>
+    <div class="body">
+      <div class="item">
+        <h3>Conversational AI with image generation</h3>
+        <p class="meta">Personal project</p>
+        <p>An assistant I trained to hold a conversation and generate images from a prompt. Most of the work was in the unglamorous half — shaping the data, iterating on what the model actually produced, and building an interface that made the results usable rather than merely impressive.</p>
+      </div>
+      <div class="item">
+        <h3>Ethereum smart contracts</h3>
+        <p class="meta">Solidity · Foundry</p>
+        <p>Token contracts written and tested with Foundry, then deployed to testnet: supply rules, access control, transfer logic, with the test suite treated as part of the deliverable rather than an afterthought.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="label">Stack</h2>
+    <div class="body">
+      <div class="groups">
+        <div class="group">
+          <h4>Languages</h4>
+          <p>C, C++, TypeScript, JavaScript, Python, Solidity, SQL, currently learning Java</p>
+        </div>
+        <div class="group">
+          <h4>Graphics and engines</h4>
+          <p>Rendering pipelines, voxel meshing, scene and entity architecture, collision, linear algebra and transforms</p>
+        </div>
+        <div class="group">
+          <h4>Web</h4>
+          <p>React, Next.js, Node.js, REST APIs, Tailwind CSS, HTML/CSS</p>
+        </div>
+        <div class="group">
+          <h4>AI</h4>
+          <p>Model training and fine-tuning, image generation, conversational interfaces</p>
+        </div>
+        <div class="group">
+          <h4>Data</h4>
+          <p>PostgreSQL, Prisma, Redis</p>
+        </div>
+        <div class="group">
+          <h4>Smart contracts</h4>
+          <p>Solidity, Foundry, testnet deployment</p>
+        </div>
+        <div class="group">
+          <h4>Systems</h4>
+          <p>Linux (Fedora daily driver), Docker, Git, shell tooling, basic networking and troubleshooting</p>
+        </div>
+        <div class="group">
+          <h4>Practices</h4>
+          <p>Automated testing, documentation, error handling, secrets management, separation of concerns</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="label">Study</h2>
+    <div class="body">
+      <div class="item">
+        <h3>Mohammed VI Polytechnic University</h3>
+        <p class="meta">BSc Computer Science, College of Computing · expected 2029</p>
+        <ul class="course">
+          <li>Data structures and algorithms</li>
+          <li>Object-oriented programming</li>
+          <li>C and C++</li>
+          <li>Computer architecture</li>
+          <li>Automata and formal languages</li>
+          <li>Web development</li>
+          <li>Probability and statistics</li>
+          <li>Calculus and engineering mathematics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="label">Teaching</h2>
+    <div class="body">
+      <div class="item">
+        <h3>Private mathematics and physics tutor</h3>
+        <p class="meta">Independent · three years · one-on-one</p>
+        <p>I teach from first principles and adapt to whoever is in front of me, which mostly means finding the exact place the intuition broke and rebuilding from there. Students leave with a method, not a worked answer. Comfortable going past the high-school syllabus where it helps.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="label">Drawing</h2>
+    <div class="body">
+      <div class="item">
+        <h3>Second place, online fan art competition</h3>
+        <p class="meta">Ongoing practice</p>
+        <p>I draw constantly, and have done long enough that it stopped being separate from the technical work. It is where the interest in engines and rendering came from in the first place: wanting to know how an image gets made, then wanting to make the thing that makes it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="label">Elsewhere</h2>
+    <div class="body">
+      <ul class="plain">
+        <li>Run Fedora as my main system: package management, Docker setup, GPU and driver debugging, command-line diagnostics.</li>
+        <li>C and C++ beyond coursework — pointers and memory layout, smart pointers, virtual dispatch, function objects.</li>
+        <li>RISC-V and pipelining from the architecture side, which is where most of my curiosity about how software actually runs comes from.</li>
+        <li>Capture-the-flag challenges and reverse engineering, still early but the direction I keep drifting toward.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div>
+      <h4>Open to</h4>
+      <ul class="plain">
+        <li>Junior software or web development, remote or flexible</li>
+        <li>Freelance full-stack, engine, and graphics work</li>
+        <li>QA and technical support</li>
+        <li>Mathematics, physics, and programming tutoring</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Languages</h4>
+      <ul class="lang">
+        <li><b>French</b> <span>— C1</span></li>
+        <li><b>English</b> <span>— C1</span></li>
+        <li><b>Arabic</b> <span>— B2</span></li>
+      </ul>
+    </div>
+  </footer>
+
+  <p class="updated">
+    <span>Updated September 2026</span>
+    <button class="toggle" type="button" id="theme">Switch theme</button>
+  </p>
+
+</div>
+
+<script>
+  (function(){
+    var root=document.documentElement,btn=document.getElementById('theme');
+    var saved=null;
+    try{saved=localStorage.getItem('cv-theme')}catch(e){}
+    if(saved){root.setAttribute('data-theme',saved)}
+    btn.addEventListener('click',function(){
+      var dark=root.getAttribute('data-theme')==='dark'||
+        (!root.getAttribute('data-theme')&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next=dark?'light':'dark';
+      root.setAttribute('data-theme',next);
+      try{localStorage.setItem('cv-theme',next)}catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>
